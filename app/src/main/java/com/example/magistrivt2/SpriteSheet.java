@@ -44,7 +44,7 @@ public class SpriteSheet {
 		for(int _k=3; _k>0; _k--) {
 			for(int _i=sprNumber*_k/5; _i<sprNumber*(_k+1)/5; _i++) {
 				Bitmap newImage  = Bitmap.createBitmap(MAX_WIDTH,MAX_HEIGHT, Bitmap.Config.ALPHA_8);
-				Bitmap cropped  = Bitmap.createBitmap(source, numbers.get(_i*6+2), numbers.get(_i*6+3), numbers.get(_i*6+2)+numbers.get(_i*6+4), numbers.get(_i*6+3)+numbers.get(_i*6+5));
+				Bitmap cropped  = Bitmap.createBitmap(source, numbers.get(_i*6+2), numbers.get(_i*6+3), numbers.get(_i*6+4), numbers.get(_i*6+5));
 				//BufferedImage bi = image.getSubimage(numbers.get(_i*6+2), numbers.get(_i*6+3), numbers.get(_i*6+4), numbers.get(_i*6+5));
 				Canvas canvas = new Canvas(newImage);
 				canvas.drawBitmap(cropped,  MAX_WIDTH/2 - numbers.get(_i*6), MAX_HEIGHT/2 - numbers.get(_i*6+1), null );

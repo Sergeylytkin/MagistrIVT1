@@ -91,14 +91,14 @@ public class Draw2D extends View {
         canvas.drawText(beam, x, y, mPaint);
         field.paint(canvas);
        //canvas.drawBitmap(uBitmap, 0, 0 , mPaint);
-        Bitmap newImage  = Bitmap.createBitmap(200,200, Bitmap.Config.ALPHA_8);
-        //Bitmap newImage  = Bitmap.createBitmap(uBitmap, 0,0, 200,180);
-        //canvas.drawBitmap(newImage, 200,200, mPaint);
+        //Bitmap newImage  = Bitmap.createBitmap(200,200, Bitmap.Config.ALPHA_8);
+        Bitmap newImage  = Bitmap.createBitmap(uBitmap, 0,0, 200,180);
+        canvas.drawBitmap(newImage, 200,200, mPaint);
 
-        //Matrix matrix = new Matrix();
-        //matrix.preScale(-1.0f, 1.0f);
-       // Bitmap mirroredBitmap = Bitmap.createBitmap(newImage, 0, 0, newImage.getWidth(), newImage.getHeight(), matrix, false);
-       // canvas.drawBitmap(mirroredBitmap, 200,300, mPaint);
+        Matrix matrix = new Matrix();
+        matrix.preScale(-1.0f, 1.0f);
+        Bitmap mirroredBitmap = Bitmap.createBitmap(newImage, 0, 0, newImage.getWidth(), newImage.getHeight(), matrix, false);
+        canvas.drawBitmap(mirroredBitmap, 200,300, mPaint);
         // восстанавливаем холст
         //canvas.restore();
 

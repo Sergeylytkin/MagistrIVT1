@@ -48,7 +48,9 @@ public class SpriteSheetProvider {
 						numbers.add(Integer.parseInt(strs[_i]));
 					}
 				}
-				Bitmap bi = BitmapFactory.decodeResource(res, R.drawable.p0);
+				//Bitmap bi = BitmapFactory.decodeResource(res, R.drawable.p0);
+				InputStream is2 = assetManager.open(filePath);
+				Bitmap bi = BitmapFactory.decodeStream(is2);
 				ColorProvider.setOffSetColor(bi);
 				SpriteSheet spriteSheet = new SpriteSheet(bi,numbers);
 				spriteSheets.add(spriteSheet);
@@ -75,8 +77,10 @@ public class SpriteSheetProvider {
 						numbers.add(Integer.parseInt(strs[_i]));
 					}
 				}
-				Bitmap bi = BitmapFactory.decodeResource(res, R.drawable.p0);
-				ColorProvider.setOffSetColor(bi);
+				//Bitmap bi = BitmapFactory.decodeResource(res, R.drawable.p0);
+				InputStream is2 = assetManager.open(filePath);
+				Bitmap bi = BitmapFactory.decodeStream(is2);
+
 				SpriteSheet spriteSheet = new SpriteSheet(bi,numbers);
 				spriteSheets.add(spriteSheet);
 			} catch (IOException e) {
