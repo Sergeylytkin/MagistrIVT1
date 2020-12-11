@@ -3,15 +3,11 @@ package com.example.magistrivt2;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-
-public class Hoplit extends Unit{
+public class Hoplit extends Unit {
 	private final int INTER_QUANTITY = 10;
 	private SpriteSheet ss;
 	private Bitmap frame;
@@ -206,12 +202,14 @@ public class Hoplit extends Unit{
 			//WaveAlg alg = new WaveAlg();
 			//path = new WaveAlg().findDiagonPath(Field.map0, x, y, tx, ty);
 			target = new Point(tx, ty);
-			selected = false;//времянка
-
+			//selected = false;//времянка
 		}
 	}
-	public void setSelectedState (int qx, int qy) {
-		if(x==qx && y==qy)
-			selected =! selected;
+	public boolean setSelectedState (int qx, int qy) {
+		if(x==qx && y==qy) {
+			selected = !selected;
+			return true;
+		}
+		return false;
 	}
 }

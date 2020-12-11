@@ -1,6 +1,7 @@
 package com.example.magistrivt2;
 
 import android.graphics.Canvas;
+import android.view.MotionEvent;
 
 public class UnitCont {
 	Unit[] units = new Unit[5];
@@ -38,6 +39,22 @@ public class UnitCont {
 	public void refresh() {
 		for(Unit u: units) {
 			u.tick();
+		}
+	}
+
+	public void onTouch(MotionEvent e) {
+		int qx = (int)((e.getX()-Field.left)/Field.xSize);
+		int qy = (int)((e.getY()-Field.top)/Field.ySize);
+		boolean isBuzy = false;
+		if(e.getAction()==MotionEvent.ACTION_DOWN) {
+			for(Unit u: units) {
+				isBuzy = u.setSelectedState(qx, qy);
+			}
+		}
+		if(isBuzy == false){
+			for(Unit u: units) {
+				u.setTarget(qx, qy);
+			}
 		}
 	}
 }

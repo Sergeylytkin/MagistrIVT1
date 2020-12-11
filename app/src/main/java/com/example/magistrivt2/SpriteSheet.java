@@ -3,6 +3,7 @@ package com.example.magistrivt2;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class SpriteSheet {
 		}
 		for(int _i=0; _i<sprNumber; _i++) {
 			//Bitmap newImage = new BufferedImage(MAX_WIDTH, MAX_HEIGHT, BufferedImage.TYPE_INT_ARGB);
-			Bitmap newImage  = Bitmap.createBitmap(MAX_WIDTH,MAX_HEIGHT, Bitmap.Config.ALPHA_8);
+			Bitmap newImage  = Bitmap.createBitmap(MAX_WIDTH,MAX_HEIGHT, Bitmap.Config.ARGB_8888);
 			Bitmap cropped  = Bitmap.createBitmap(source, numbers.get(_i*6+2), numbers.get(_i*6+3), numbers.get(_i*6+4), numbers.get(_i*6+5));
 			//BufferedImage bi = image.getSubimage(numbers.get(_i*6+2), numbers.get(_i*6+3), numbers.get(_i*6+4), numbers.get(_i*6+5));
 			Canvas canvas = new Canvas(newImage);
@@ -43,14 +44,10 @@ public class SpriteSheet {
 		}
 		for(int _k=3; _k>0; _k--) {
 			for(int _i=sprNumber*_k/5; _i<sprNumber*(_k+1)/5; _i++) {
-				Bitmap newImage  = Bitmap.createBitmap(MAX_WIDTH,MAX_HEIGHT, Bitmap.Config.ALPHA_8);
-				Bitmap cropped  = Bitmap.createBitmap(source, numbers.get(_i*6+2), numbers.get(_i*6+3), numbers.get(_i*6+4), numbers.get(_i*6+5));
-				//BufferedImage bi = image.getSubimage(numbers.get(_i*6+2), numbers.get(_i*6+3), numbers.get(_i*6+4), numbers.get(_i*6+5));
-				Canvas canvas = new Canvas(newImage);
-				canvas.drawBitmap(cropped,  MAX_WIDTH/2 - numbers.get(_i*6), MAX_HEIGHT/2 - numbers.get(_i*6+1), null );
-//				BufferedImage newImage = new BufferedImage(MAX_WIDTH, MAX_HEIGHT, BufferedImage.TYPE_INT_ARGB);
-//				g.drawImage(frames.get(_i), 0+frames.get(_i).getWidth(), 0,-frames.get(_i).getWidth(), frames.get(_i).getHeight(), null);
-//				frames.add(newImage);
+				Matrix matrix = new Matrix();
+				matrix.preScale(-1.0f,1.0f);
+				Bitmap mirrored = Bitmap.createBitmap(frames.get(_i),0,0, MAX_WIDTH, MAX_HEIGHT, matrix, false);
+				frames.add(mirrored);
 			}
 		}
 	}
@@ -66,13 +63,11 @@ public class SpriteSheet {
 //		int py = Field.top+y*Field.ySize;
 		Paint mPaint = new Paint();
 		if(selected) {
-//			g2.setColor(Color.orange);
-//			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-//			Stroke newStroke = new BasicStroke(2f);
-//			g2.setStroke(newStroke );
-//			g2.drawOval(px+4, py+4, Field.xSize-8, Field.ySize-8);
 			mPaint.setColor(Color.RED);
-			g.drawOval(x+4, y+4, x+4+Field.xSize-8, y+4+Field.ySize-8, mPaint);
+			mPaint.setStyle(Paint.Style.STROKE);
+			mPaint.setStrokeWidth(2);
+			//mPaint.setStyle(Paint.Style.);
+			g.drawCircle(x+Field.xSize/2, y+Field.ySize/2, (Field.xSize+Field.xSize-4)/4,mPaint);
 		}
 
 		g.drawBitmap(frame, x-MAX_WIDTH/2+Field.xSize/2, y-MAX_HEIGHT/2+Field.xSize/2, mPaint);

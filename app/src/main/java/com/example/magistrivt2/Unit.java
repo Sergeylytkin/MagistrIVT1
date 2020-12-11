@@ -10,9 +10,9 @@ public class Unit {
 		
 	}
 
-	public void setSelectedState(int qx, int qy) {
+	public boolean setSelectedState(int qx, int qy) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	public void setTarget(int qx, int qy) {

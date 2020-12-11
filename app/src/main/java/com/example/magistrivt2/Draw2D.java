@@ -9,11 +9,12 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.example.magistr.R;
 
-public class Draw2D extends View {
+public class Draw2D extends View implements Runnable {
 
     private Paint mPaint = new Paint();
     private Rect mRect = new Rect();
@@ -22,7 +23,7 @@ public class Draw2D extends View {
     Field field = null;
     private Bitmap uBitmap;
     private SpriteSheetProvider spriteSheetProvider = new SpriteSheetProvider(this);
-    private UnitCont unitCont = new UnitCont(this);
+    private UnitCont unitCont;
 
     public Draw2D(Context context, int[][] map) {
         super(context);
@@ -31,12 +32,9 @@ public class Draw2D extends View {
         mBitmap = BitmapFactory.decodeResource(res, R.drawable.cat_bottom);
         field = new Field(map);
         uBitmap = BitmapFactory.decodeResource(res, R.drawable.p0);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                unitCont.refresh();
-            }
-        }).start();
+        unitCont = new UnitCont(this);
+        Thread t = new Thread(this);
+        t.start();
     }
 
 
@@ -92,25 +90,40 @@ public class Draw2D extends View {
         field.paint(canvas);
        //canvas.drawBitmap(uBitmap, 0, 0 , mPaint);
         //Bitmap newImage  = Bitmap.createBitmap(200,200, Bitmap.Config.ALPHA_8);
-        Bitmap newImage  = Bitmap.createBitmap(uBitmap, 0,0, 200,180);
-        canvas.drawBitmap(newImage, 200,200, mPaint);
-
-        Matrix matrix = new Matrix();
-        matrix.preScale(-1.0f, 1.0f);
-        Bitmap mirroredBitmap = Bitmap.createBitmap(newImage, 0, 0, newImage.getWidth(), newImage.getHeight(), matrix, false);
-        canvas.drawBitmap(mirroredBitmap, 200,300, mPaint);
+//        Bitmap newImage  = Bitmap.createBitmap(uBitmap, 0,0, 200,180);
+//        canvas.drawBitmap(newImage, 200,200, mPaint);
+//
+//        Matrix matrix = new Matrix();
+//        matrix.preScale(-1.0f, 1.0f);
+//        Bitmap mirroredBitmap = Bitmap.createBitmap(newImage, 0, 0, newImage.getWidth(), newImage.getHeight(), matrix, false);
+//        canvas.drawBitmap(mirroredBitmap, 200,300, mPaint);
         // восстанавливаем холст
         //canvas.restore();
 
         // Выводим изображение
         // canvas.drawBitmap(mBitmap, 450, 530, mPaint);
 
-        //unitCont.paint(canvas);
+        unitCont.paint(canvas);
 
         canvas.drawBitmap(mBitmap, width - mBitmap.getWidth(), height - mBitmap.getHeight() - 10, mPaint);
     }
     public SpriteSheet getSpriteSheet(int id) {
         // TODO Auto-generated method stub
         return spriteSheetProvider.getSpriteSheet(id);
+    }
+    @Override
+    public void run() {
+        while(true){
+            unitCont.refresh();
+            this.postInvalidate();
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public void onTouch(MotionEvent event) {
+        unitCont.onTouch(event);
     }
 }
