@@ -31,7 +31,7 @@ public class Hoplit extends Unit {
 	private int deltaX;
 	private boolean isInterMediate = false;
 	
-	public Hoplit(int x, int y, Draw2D game) {
+	public Hoplit(int x, int y, Game game) {
 		this.x = x;
 		this.y = y;
 		Field.map0[y][x]=-2;

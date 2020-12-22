@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 public class UnitCont {
 	Unit[] units = new Unit[5];
 
-	public UnitCont(Draw2D game) {
+	public UnitCont(Game game) {
 		units[0]= new Hoplit(2,2, game);
 		units[1]= new Hoplit(5,7, game);
 		units[2]= new Archer(8,3, game);
@@ -48,7 +48,9 @@ public class UnitCont {
 		boolean isBuzy = false;
 		if(e.getAction()==MotionEvent.ACTION_DOWN) {
 			for(Unit u: units) {
-				isBuzy = u.setSelectedState(qx, qy);
+				if(u.setSelectedState(qx, qy)) {
+					isBuzy = true;
+				}
 			}
 		}
 		if(isBuzy == false){

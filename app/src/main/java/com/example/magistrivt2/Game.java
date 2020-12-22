@@ -14,7 +14,7 @@ import android.view.View;
 
 import com.example.magistr.R;
 
-public class Draw2D extends View implements Runnable {
+public class Game extends View implements Runnable {
 
     private Paint mPaint = new Paint();
     private Rect mRect = new Rect();
@@ -25,7 +25,7 @@ public class Draw2D extends View implements Runnable {
     private SpriteSheetProvider spriteSheetProvider = new SpriteSheetProvider(this);
     private UnitCont unitCont;
 
-    public Draw2D(Context context, int[][] map) {
+    public Game(Context context, int[][] map) {
         super(context);
         // Выводим значок из ресурсов
         Resources res = this.getResources();
@@ -39,7 +39,8 @@ public class Draw2D extends View implements Runnable {
 
 
     @Override
-    protected void onDraw(Canvas canvas){ super.onDraw(canvas);
+    protected void onDraw(Canvas canvas){
+        super.onDraw(canvas);
 
         int width = canvas.getWidth();
         int height = canvas.getHeight();

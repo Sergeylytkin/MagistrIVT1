@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
-    Draw2D draw2D;
+    Game draw2D;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         int[][] map = new MapLoader().load(assetManager,"map.txt");
         //MapLoader.print(map);
 
-        draw2D = new Draw2D(this, map);
+        draw2D = new Game(this, map);
         draw2D.setOnTouchListener(this);
         this.setContentView(draw2D);
 

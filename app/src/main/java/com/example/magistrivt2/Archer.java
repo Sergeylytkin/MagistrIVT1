@@ -32,7 +32,7 @@ public class Archer extends Unit {
 	private int deltaX;
 	private boolean isInterMediate = false;
 	
-	public Archer(int x, int y, Draw2D game) {
+	public Archer(int x, int y, Game game) {
 		this.x = x;
 		this.y = y;
 		Field.map0[y][x]=-2;

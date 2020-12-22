@@ -5,26 +5,19 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.example.magistr.R;
-
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 public class SpriteSheetProvider {
 	ArrayList<SpriteSheet> spriteSheets = new ArrayList<SpriteSheet>();
-	Draw2D game ;
+	Game game ;
 
-	public SpriteSheetProvider(Draw2D game) {
+	public SpriteSheetProvider(Game game) {
 		String[] seq = new String[] {"p0.png","p1.png","p2.png","p3.png"};
 		this.game = game;
 		add(seq);
