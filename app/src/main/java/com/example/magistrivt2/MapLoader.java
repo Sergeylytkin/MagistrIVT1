@@ -1,6 +1,7 @@
 package com.example.magistrivt2;
 
 import android.content.res.AssetManager;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -29,7 +30,7 @@ public class MapLoader {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		int[][] arr = new int[8][];
+		int[][] arr = new int[14][];
 		Scanner sc;
 		try {
 			sc = new Scanner(reader);
@@ -47,9 +48,9 @@ public class MapLoader {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			
+
 		}
-		//print(arr);
+		print(arr);
 		return arr;
 	}
 

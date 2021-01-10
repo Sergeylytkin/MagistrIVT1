@@ -6,7 +6,7 @@ import android.graphics.Bitmap;
 
 public class ColorProvider {
 
-	public static void setOffSetColor(Bitmap bi) {
+    public static void setOffSetColor(Bitmap bi) {
 //		for(int _y=0; _y<bi.getHeight(); _y++) {
 //			for(int _x=0; _x<bi.getWidth(); _x++) {
 //				Color pyxelColor = new Color(bi.getRGB(_x, _y), true);
@@ -22,6 +22,5 @@ public class ColorProvider {
 //			}
 //
 //		}
-	}
-
+    }
 }
