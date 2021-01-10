@@ -60,7 +60,7 @@ public class SpriteSheet {
 
 	public void render(Canvas g, Bitmap frame, int x, int y, boolean selected) {
 //		int px = Field.left+x*Field.xSize;
-//		int py = Field.top+y*Field.ySize;
+//		int py = Field.top+y*Field.ySize; test
 		Paint mPaint = new Paint();
 		if(selected) {
 			mPaint.setColor(Color.RED);
